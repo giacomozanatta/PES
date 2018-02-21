@@ -1,0 +1,225 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\title{Formulario di Probabilità e Statisticas}
+\author{Giacomo Zanatta}
+\renewcommand*\contentsname{Indice}
+\usepackage{Sweave}
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+\section{Probabilità elementare}
+\subsection{Contare le probabilità}
+Se abbiamo un esperimento con n$_1$ possibili scelte, e per ogni scelta dell'esperimento 1 ci sono n$_2$ possibili scelte, allora in totale ci saranno $n_1*n_2$ possibili scelte.\\
+In generale, se abbiamo $i$ esperimenti, ciascuno con $n_i$ possibili scelte, allora esistono in totale 
+\begin{equation}
+  \prod\limits_{i=1}^n m_i
+\end{equation}
+possibili scelte.\\ 
+\\
+\emph{
+  Esempio: una commissione parlamentare deve essere composta da un membro del partito A, che conta 10 rappresentanti, da un membro del partito B, che conta 15 rappresentanti, e da un membro del   partito C, che conta 2 rappresentanti. In totale quindi ci sono $10*15*2 = 300$ possibili   commissioni parlamentari.
+}
+\\
+\subsection{Disposizioni}
+Una disposizione di r elementi di un insieme composta da n elementi è una scelta ordinata di r elementi tra quegli n.\\
+Possiamo distinguere le disposizioni in:
+\begin{enumerate}
+  \item Disposizioni con ripetizione: in questo caso, ogni elemento può essere scelto più di una volta. \\ Le disposizioni con ripetizione di n elementi presi r alla volta sono
+  \begin{equation}
+    \prod\limits_{i=1}^n n = n^r.
+  \end{equation}
+  \item Disposizioni semplici (senza ripetizione): le disposizioni semplici di n elementi presi r alla volta sono 
+    \begin{equation}
+      n*(n-1)*...*(n-r+1) = \frac{n!}{(n-r)!}
+    \end{equation}
+\end{enumerate}
+\emph{
+ESEMPI:
+\begin{enumerate}
+\item Quante parole di 2 lettere possiamo comporre con le lettere I,L,A ? Siamo nel caso delle disposizioni con ripetizione, perchè una lettera può essere ripetuta. Quindi, in totale, abbiamo $3^2 = 9$ possibili parole: II, IL, IA, LI, LL, LA, AI, AL, AA.\\
+Se invece le parole devono avere tutte lettere diverse, siamo nel caso delle disposizioni semplici, quindi avremo $3*2 = 6$ possibili parole: IL, IA, LI, LA, AI, AL.
+\item Un bit può assumere i valori 0 o 1. Un byte è una sequenza di 8 bit. Quanti byte ci sono?
+$2^8$ possibili byte, in quanto in questo caso dobbiamo usare le disposizioni con ripetizione.
+\end{enumerate}
+}
+Le disposizioni vengono normalmente usate quando bisogna effettuare un campionamento casuale da un'urna (ossia estrazione di palle da un'urna).\\
+Se un'urna contiene n palle distinguibili e dobbiamo estrarre r palle con reintroduzione, le estrazioni possibili sono $n^r$ (disposizioni con ripetizione).\\
+Se invece le palle vengono estratte senza reintroduzione, allora le estrazioni possibili sono $n*(n-1)*...*(n-r+1)$ (disposizioni semplici).
+\subsection{Permutazioni}
+Una permutazione è una disposizione semplice di n elementi presi n alla volta, e sono
+\begin{equation}
+  n*(n-1)*...*2*1 = n!
+\end{equation}
+Le permutazioni vengono usate ad esempio per trovare il numero di anagrammi di una parola.
+Se abbiamo m elementi che si ripetono, rispettivamente, k$_1$, k$_2$, ..., k$_m$ volte (ad esempio, se dobbiamo trovare gli anagrammi della parola CASA, abbiamo l'elemento A ripetuto 2 volte) allora è necessario usre la formula 
+\begin{equation}
+\frac{n!}{k_1!k_2!...k_n!}
+\end{equation}
+\emph{
+ESEMPI:
+\begin{enumerate}
+\item Trovare il numero di anagrammi della parola CIAO: la parola in questione è composta da 4 lettere, e gli anagrammi possibili saranno $4!=4*3*2*1=24$ 
+\item Trovare il numero di anagrammi della parola GATTO: notare che, sebbene questa parola ha lo stesso numero di lettere della parola precedente, ha la lettere T ripetuta 2 volte. Quindi i possibili anagrammi non saranno 24, ma $\frac{4!}{2}=12$ 
+\end{enumerate}
+}
+\subsection{Combinazioni}
+Un sottoinsieme di numerosità r scelto da un insieme con n elementi si chiama combinazione di n elementi presi r alla volta.
+Il numero di combinazioni di n elementi presi r alla volta (con r <= n) è
+\begin{equation}
+  \frac{n(n-1)...(n-r+1)}{r!} = {{n}\choose{r}}
+\end{equation}
+Le combinazioni vengono utilizzate quando non è importante l'ordine (un insieme infatti non è ordinato).
+\paragraph{Coefficente binomiale\\}
+${{n}\choose{r}}$ si chiama coefficente binomiale, e si calcola mediante la formula
+\begin{equation}
+{{n}\choose{r}} = \frac{n!}{k!(n-r)!}
+\end{equation}
+La formula scritta precedentemente è riferita alle combinazioni semplici (senza ripetizione).\\
+Se vogliamo contare il numero di sottoinsiemi tenendo conto anche di elementi ripetuti (quindi nel caso in cui ogni sottoinsieme, composto da r elementi, può contenere r volte lo stesso elemento), usiamo la formula
+\begin{equation}
+  {{n+r-1}\choose{r}} = \frac{(n+r-1)!}{r!(n-1)!}
+\end{equation}
+In questo caso, r può essere anche maggiore di n.
+\subsection{Fenomeni aleatori}
+Il calcolo delle probabilità è la logica dell'incerto.\\
+La probabilità viene usata per ragionare sui possibili risultati di un fenomeno aleatorio.\\
+Di un fenomeno aleatorio non si può prevedere con certezza l'esito.
+Alcuni esempi di fenomeni aleatori sono:
+\begin{enumerate}
+\item Lancio di un dado
+\item Lancio di una moneta 4 volte
+\item L'estrazione di una mano di poker.
+\end{enumerate}
+\subsubsection{Spazio campionario, risultati, eventi}
+\begin{enumerate}
+\item Lo spazio campionario ($\Omega$) è un insieme che rappresenta i possibili risultati di un fenomeno aleatorio.
+\item Un evento è un sottoinsieme dello spazio campionario ${A}\subset{\Omega}$.
+\item I risultati ${\omega}$ sono detti eventi elementari. 
+\item $\Omega$ è chiamato evento certo, in quanto si verifica sicuramente.
+\end{enumerate}
+Ad esempio, per il lancio di un dado, lo spazio campionario $\Omega$ è dato dall'insieme di tutti i possibili risultati, ossia $\Omega = \{1,2,3,4,5,6\}$, mentre un possibile evento può essere $A=\{5,6\}$ (evento risultato superiore a 4), oppure $B=\{2,4,6\}$ (evento risultato pari).
+\subsubsection{Operazioni logiche sugli eventi}
+\paragraph{Negazione (Complemento)\\}
+Il complementare di un evento $A$, $\overline{A}$, è l'evento che è vero quando A è falso ed è falso quando A è vero.
+L'evento impossibile è la negazione dell'evento certo: $\overline{\Omega} = \emptyset$
+\paragraph{Intersezione\\}
+L'intersezione di due eventi A e B, ${A}\cap {B}$, è l'evento che è vero quando sia A che B sono veri.
+\paragraph{Unione\\}
+L'unione di A e B, ${A}\cup{B}$, è l'evento che è vero quando A oppure B (oppure entrambi) sono veri.
+\paragraph{Inclusione\\}
+L'evento A è incluso nell'evento B se A è un sottoinsieme di B, ${A}\subset{B}$. In questo caso se A si verifica vuol dire che si è verificato anche B.
+\paragraph{Incompatibilità\\}
+Due eventi A e B si dicono incompatibili se ${A}\cap{B}=\emptyset$, ossia se non è possibile che entrambi siano veri.
+\paragraph{Partizione\\}
+Una partizione dello spazio campionario è una famiglia di eventi tale che ogni coppia di insiemi della famiglia ha intersezione vuota e l'unione di tutti i componenti della famiglia è lo spazio campionario $\Omega$.
+\subsection{Definizione di Probabilità}
+La probabilità una funzione degli eventi di uno spazio campionario, a valori in $R^+$, definita dai seguenti assiomi:
+\begin{enumerate}
+\item $0<=P(A)<=1$
+\item $P(\Omega)=1$
+\item Se ${A_{i}}\cap{{A}_j}=\emptyset,\forall{{i}\ne{j}}$ (sequenza di eventi incompatibili), allora
+  \begin{equation}
+  P(\bigcup_{n=1}^{\infty}A_n) = \sum\limits_{n=1}^{\infty}P(A_n)
+  \end{equation}
+\end{enumerate}
+La probabilità di un evento $A$, definita come $P(A)$, è un numero tra 0 e 1 che indica il grado di fiducia del ricercatore nell'avverarsi dell'evento $A$. Se $P(A)=1$, allora l'evento si è avverato. Più $P(A)$ si avvicina ad 1, più ci aspettiamo che l'evento $A$ si avveri.
+\subsubsection{Proprietà della probabilità}
+\paragraph{Complementare\\}
+\begin{equation}
+  P(\overline{A}) = 1 - P(A)
+\end{equation}
+\paragraph{Evento impossibile\\}
+\begin{equation}
+  P(\emptyset) = P(\overline{\Omega}) = 1 - P(\Omega) = 0
+\end{equation}
+\paragraph{Unione\\}
+\begin{equation}
+  P({A}\cup{B}) = P(A) + P(B) - P({A}\cap{B})
+\end{equation}
+\paragraph{Partizione\\}
+se $C_1,C_2,...$ sono partizioni, allora
+\begin{equation}
+  P(\bigcup_{i=1}^{\infty}C_i)) = P(\Omega) = 1
+\end{equation}
+\subsubsection{Spazi campionari finiti}
+Se lo spazio campionario è un insieme finito ( $\Omega = \{\omega_1,...,\omega_n \}$ ), allora una assegnazione di probabilità è data da n valori $p_1, ...., p_n$ tali che:
+\begin{enumerate}
+\item $p_i \in [0,1]\; \forall{i=1,...n}$
+\item $\bigcup_{i=1}^{n}p_i = 1$
+\item $p_i = P(\{\omega_i\})\; \forall{i=1,...,n}$
+\end{enumerate}
+\subsubsection{Eventi elementari equiprobabili}
+Se tutti gli eventi elementari hanno la stessa probabilità, allora
+\begin{equation}
+  p_i = P(\{\omega_i\}) = \frac{1}{n}, \; \forall{i=1,...,n}
+\end{equation}
+Quindi, per ogni evento $A$ (che ricordiamo è un'unione di eventi complementari, $A=\{\omega_{i1}, ..., \omega_{ir}\})$
+\begin{equation}
+  P(A)= \frac{r}{n} = \frac{\# A}{\# \Omega}
+\end{equation}
+ossia il numero di casi favorevoli fratto il numero di casi possibili.
+\subsection{Popolazioni e sottopopolazioni}
+Consideriamo ora una popolazione con N elementi suddivisi, a seconda che possiedono o meno una certa caratteristica, in due sottopopolazioni rispettivamente di K e N-K elementi.
+La probabilità che su n elementi estratti casualmente esattamente k hanno la caratteristica è:
+\begin{enumerate}
+\item Con reinserimento:
+\begin{equation}
+P(A_k) = {{n}\choose{k}}(\frac{K}{N})^{k}(\frac{N-K}{N})^{n-k}
+\end{equation}
+\item Senza reinserimento (n<N):
+\begin{equation}
+P(A_k) = \frac{{{n}\choose{k}}{{N-K}\choose{n-k}}}{{{N}\choose{n}}}
+\end{equation}
+\end{enumerate}
+\newpage
+\section{Probabilità condizionata}
+La probabilità condizionata dell'evento $A$ dato l'evento $B$ è
+\begin{equation}
+P(A|B) = \frac{P({A}\cap{B})}{P(B)},\; P(B)>0
+\end{equation}
+La probabilità condizionata rappresenta la probabilità che si verifichi $A$, sapendo che $B$ è si è verificato.\\
+Il campo delle possibilità quindi si restringe ad un sottoinsieme di $\Omega$ (l'insieme ${B}\subset{\Omega}$)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
