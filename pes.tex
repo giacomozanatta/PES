@@ -2,7 +2,7 @@
 \usepackage{hyperref}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
-\title{Formulario di Probabilità e Statisticas}
+\title{Appunti di Probabilità e Statisticas}
 \author{Giacomo Zanatta}
 \renewcommand*\contentsname{Indice}
 \usepackage{Sweave}
@@ -176,18 +176,50 @@ P(A_k) = \frac{{{n}\choose{k}}{{N-K}\choose{n-k}}}{{{N}\choose{n}}}
 \end{equation}
 \end{enumerate}
 \newpage
-\section{Probabilità condizionata}
+\section{Probabilità condizionata e composta}
+\subsection{Probabilità condizionata}
 La probabilità condizionata dell'evento $A$ dato l'evento $B$ è
 \begin{equation}
 P(A|B) = \frac{P({A}\cap{B})}{P(B)},\; P(B)>0
 \end{equation}
 La probabilità condizionata rappresenta la probabilità che si verifichi $A$, sapendo che $B$ è si è verificato.\\
 Il campo delle possibilità quindi si restringe ad un sottoinsieme di $\Omega$ (l'insieme ${B}\subset{\Omega}$)
-
-
-
-
-
+\subsection{Probabilità composta}
+Per ottenere la probabilità di un'intersezione è possibile usare la probabilità condizionata:
+\begin{equation}
+  P({A}\cap{B}) = P(A|B)P(B)
+\end{equation}
+Questa formula viene chiamata formula delle probabilità composte e si può generalizzare a qualsiasi numero di eventi $A_1,...,A_n$
+\begin{equation}
+  P({A_1}\cap{A_2}\cap{...}\cap{A_n}) = P(A_n|{A_1}\cap{...}\cap{A_{n-1}})...P(A_3|{A_1}\cap{A_2})P(A_1)
+\end{equation}
+\subsection{Eventi indipendenti}
+Se
+\begin{equation}
+P(A|B) = P(A)
+\end{equation}
+allora gli eventi $A$ e $B$ sono indipendenti. Si ha quindi:
+\begin{equation}
+P({A}\cap{B}) = P(A)P(B)
+\end{equation}
+Più in generale: gli eventi $A_1,...,A_n$ di dicono indipendenti se, comunque si prendono k>1 di essi, si ha:
+\begin{equation}
+P({A_{i1}}\cap{A_{i2}}\cap{...}\cap{A_{ik}}) = P(A_{i1})P(A_{ik})
+\end{equation}
+Notare che eventi indipendenti ed eventi disgiunti non è la stessa cosa!
+\newpage
+\section{Legge della probabilità totale}
+Se $C_1,C_2,...$ sono una partizione dell'evento certo, la probabilità di un qualsiasi evento $A$ può essere scritta come (legge della probabilità totale):
+\begin{equation}
+P(A) = \sum\limits_{i}{ P({A}\cap{C_i})} = \sum\limits_{i}{ P({C_i})P(A|C_i)}
+\end{equation}
+\section{La formula di Bayes}
+Sia data la partizione $C_1, C_2,...$ e tutti i suoi elementi abbiamo probabilità positiva. Sia $A$ un ulteriore evento, anch'esso con probabilità positiva. Allora
+\begin{equation}
+P(C_m|A) = \frac{P({C_m}\cap{A})}{P(A)} = \frac{P(A|C_m)P(C_m)}{\sum\limits_{i}{P(A|C_i)P(C_i)}}
+\end{equation}
+Il teorema di Bayes permette di aggiornare l'assegnazione di probabilità data a priori di certi eventi $C_m$, quando l'evento $A$ si è verificato.\\
+Il risultato sono le nuove probabilità $P(C_m|A)$, dette a posteriori.
 
 
 
