@@ -7,13 +7,71 @@
 \renewcommand*\contentsname{Indice}
 \usepackage{Sweave}
 \begin{document}
+\maketitle
+\tableofcontents
+\newpage
 \section{Probabilità elementare}
 \begin{enumerate}
 \item Da un’indagine svolta presso una certa azienda di ICT è emerso che il 10\% dei
 dipendenti sa programmare in Fortran, il 20\% in C++, il 5\% in Java. Inoltre il
 5\% sa usare Fortran e C++, il 3\% Fortran e Java, il 2\% Java e C++ e l’1\% sa
-programmare in tutti tre i linguaggi. Scegliendo a caso un dipendente, qual è la
-probabilità che usi solo C++? E che programmi in Fortran e Java ma non in C++? \\
-
+programmare in tutti e tre i linguaggi. Scegliendo a caso un dipendente, qual è la
+probabilità che usi solo C++? E che programmi in Fortran e Java ma non in C++? \\ \\
+\emph{\underline{SOLUZIONE:}\\
+Abbiamo che:\\ \\
+$P(F) = 0.1$ \\
+$P(C) = 0.2$\\
+$P(J) = 0.05$ \\
+${P({F}\cap{C})}=0.05$\\
+${P({F}\cap{J})}=0.03$\\
+${P({C}\cap{J})}=0.02$\\
+${P({C}\cap{J}\cap{F})}=0.01$\\ \\
+Per rispondere alla prima domanda, possiamo scomporre C, ossia l'insieme dei dipendenti che programmano in C++, in:\\
+$C = {A}\cup{({C}\cap{J})}\cup{({C}\cap{F})}  $ \\
+Dove A è l'insieme dei programmatori che sanno solo il C++, ${C}\cap{J}$ è l'insieme dei programmatori che programmano in C++ e Java e ${C}\cap{F}$ è l'insieme dei programmatori che programmano in C++ e Fortran.\\
+Possiamo scrivere tutto usando le probabilità:\\
+$P(C) = P(A)+P({C}\cap{F})+P({C}\cap{J})-P({C}\cap{J}\cap{F})$
+A noi serve P(A):\\
+$P(A) = P(C)-P({C}\cap{F})-P({C}\cap{J})+P({C}\cap{J}\cap{F}) = \\=0.2-0.05-0.02+0.01=0.14$\\
+Per il punto 2 (probabilità che programmi in Fortran e Java ma non in C++) il procedimento è simile: definiamo l'insieme dei programmatori che conoscono Fortran e Java come\\
+${J}\cap{F} = {B}\cup{({J}\cap{F}\cap{C}})$\\
+Dove B è l'insieme dei programmatori che conoscono Java e Fortran, ma non C++.\\
+Quindi,passando alle probabilità:\\
+$P(B) = P({J}\cap{F})-P({J}\cap{F}\cap{C})=0.03-0.01 = 0.02$\\
+}
+\item Da un’urna contenente 6 palline numerate da 1 a 6, se ne estraggono due con reinserimento.
+Descrivere uno spazio campionario per l’esperimento e calcolare la probabilità
+che la somma dei numeri sulle palline estratte\\
+a) sia 7 o 8?\\
+b) sia 7 ottenuto con 2 seguito da 5?\\
+c) sia 7 o 11? \\
+d) sia maggiore di 7?
+Ripetere l’esercizio nel caso in cui l’estrazione avvenga senza reinserimento.\\
+\emph{\underline{SOLUZIONE:}\\ \\
+a) Dobbiamo fare 2 estrazioni senza reinserimento, quindi il nostro spazio campionario sarà composto da 36 elementi.\\
+Possiamo ottenere un 7 in 6 modi diversi (1,6 - 2,5 - 3,4 - 4,3 - 5,2 - 6,1) e un 8 in 5 modi diversi (2,6 - 3,5 - 4,4 - 5,3 - 6,2). Quindi per ottenere P(A):\\
+$P(A) = \frac{6+5}{36} = \frac{11}{36}$.\\
+b) La probabilità di ottenere un 7 pescando un 2 seguito da un 5 è di $\frac{1}{36}$. Questo perchè esiste una sola possibilità di ottenere un 7 secondo questa modalità.
+c) Sia 7 o 11: Sappiamo già che possiamo ottenere 7 in 6 modi diversi. Per ottenere 11, invece, è è possibile farlo in 2 modi diversi. (6,5 - 5,6). Quindi:\\
+$P(C) = \frac{6+2}{36} = \frac{2}{9}$ \\
+d) Dobbiamo considerare la probabilità che la somma dei numeri sia 8,9,10,11 o 12:\\
+8: otteniamo 8 in 5 modi diversi.\\
+9: otteniamo 9 in 4 modi diversi (3,6 - 4,5 - 6,3 - 5,4)\\
+10: otteniamo 10 in 3 modi diversi (4,6 - 5,5 - 6,4)\\
+11: otteniamo 11 in 2 modi diversi.\\
+12: otteniamo 12 in 1 modo (6,6).\\
+Quindi: $P(D) = \frac{5+4+3+2+1}{36} = \frac{5}{12}$ \\ \\
+Consideriamo ora il caso in cui l'estrazione avvenga senza reinserimento:\\
+Dobbiamo stare attenti al nostro spazio campionario. In questo caso, non ci saranno più 36 elementi, ma solo 30 (6*5).\\
+a) Otteniamo un 7 in 6 modi diversi, un 8 in 4 modi diversi (non si conta più il caso in cui i 2 numeri sono uguali). Quindi $P(A) = \frac{10}{30} = \frac{1}{30}$.\\
+b) In questo caso, $P(B)=\frac{1}{30}$.\\
+c) Il numero di modalità con le quali otteniamo 7 o 11 non cambia. $P(C)={8}{30}={4}{15}$.\\
+d) 8: 4 modi diversi.\\
+9: 4 modi diversi.\\
+10: 2 modi diversi.\\
+11: 2 modi diversi.\\
+12: 0 modi diversi. 12 può essere ottenuto solo da 6,6 e non è possibile nel caso di estrazioni senza reinserimento.\\
+$P(D)=\frac{12}{30}=\frac{2}{5}$.
+}
 \end{enumerate}
 \end{document}
