@@ -207,51 +207,87 @@ Più in generale: gli eventi $A_1,...,A_n$ di dicono indipendenti se, comunque s
 P({A_{i1}}\cap{A_{i2}}\cap{...}\cap{A_{ik}}) = P(A_{i1})P(A_{ik})
 \end{equation}
 Notare che eventi indipendenti ed eventi disgiunti non è la stessa cosa!
-\newpage
-\section{Legge della probabilità totale}
+\subsection{Legge della probabilità totale}
 Se $C_1,C_2,...$ sono una partizione dell'evento certo, la probabilità di un qualsiasi evento $A$ può essere scritta come (legge della probabilità totale):
 \begin{equation}
 P(A) = \sum\limits_{i}{ P({A}\cap{C_i})} = \sum\limits_{i}{ P({C_i})P(A|C_i)}
 \end{equation}
-\section{La formula di Bayes}
+\subsection{La formula di Bayes}
 Sia data la partizione $C_1, C_2,...$ e tutti i suoi elementi abbiamo probabilità positiva. Sia $A$ un ulteriore evento, anch'esso con probabilità positiva. Allora
 \begin{equation}
 P(C_m|A) = \frac{P({C_m}\cap{A})}{P(A)} = \frac{P(A|C_m)P(C_m)}{\sum\limits_{i}{P(A|C_i)P(C_i)}}
 \end{equation}
 Il teorema di Bayes permette di aggiornare l'assegnazione di probabilità data a priori di certi eventi $C_m$, quando l'evento $A$ si è verificato.\\
 Il risultato sono le nuove probabilità $P(C_m|A)$, dette a posteriori.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\subsection{Sistemi}
+\subsubsection{Sistemi in serie}
+Un sistema formato da n componenti separati si dice in serie se funziona quando tutti gli n componenti funzionano.\\
+Supponiamo che i componenti si guastino in modo indipendente e che la probabilità che il componente i-esimo si guasti sia $p_i$. Sia  $A_i$ l'evento in cui il componente i-esimo funziona e $A$ l'evento in cui l'intero sistema funziona. Allora:\\
+\begin{equation}
+P(A) = \prod\limits_{i=1}^{n}P(A_i) = \prod\limits_{i=1}^{n}(1-p_i)
+\end{equation}
+\subsubsection{Sistemi in parallelo}
+Un sistema formato da n componenti separati si dice in parallelo se funziona quando almeno uno degli n componenti funziona.\\
+Supponiamo come prima che i componenti si guastino in modo indipendente, e che la probabilità di guasti del componente i-esimo sia $p_i$.\\
+Diciamo che $Ai$ è l'evento in cui il componente i-esimo funziona, e $A$ l'evento in cui l'intero sistema funziona.\\
+Allora:
+\begin{equation}
+P(A) = 1 - P(\overline{A}) = 1 - \prod\limits_{i=1}^{n}P(\overline{A_i}) = 1-\prod\limits_{i=1}^{n}(1-p_i)
+\end{equation}
+\subsection{Test diagnostici}
+La frazione dei soggetti affetti da una certa  malattia in una popolazione si chiama prevalenza.\\
+Consideriamo un test diagnostico per la malattia.\\
+La sensitività di un test è la probabilità che il test, somministrato ad un malato, sia positivo.\\
+La specificità di un test è la probabilità che  il test, somministrato ad un non malato, sia negativo.\\
+La situazione ideale sarebbe sensitività=specificità = 1.\\
+Normalmente la situazione ideale non è raggiungibile, di conseguenza la situazione reale sarà sensitività < 1 e specificità < 1\\
+Vediamo meglio con un esempio.\\
+Immaginiamo di somministrare un test diagnostico non perfetto a una persona estratta a caso dalla popolazione. Consideriamo gli eventi:
+\begin{enumerate}
+  \item  M: la persona estratta è malata.
+  \item +: il test dà risultato positivo.
+  \item -:il test dà risultato negativo.
+  \item ${\overline{M}}\cap{+}$: il test dà un falso positivo.
+  \item${M}\cap{-}$: il test dà un falso positivo.
+\end{enumerate}
+Abbiamo, allora:
+\begin{enumerate}
+  \item $P(M) = $ prevalenza
+  \item $P(+|M) = $ sensitività
+  \item $P(-|M) = $ specificità
+\end{enumerate}
+\begin{enumerate}
+  \item Probabilità di un falso positivo:
+  \begin{equation}
+    P(\overline{M}\cap{+}) = P(\overline{M}+P(+|\overline{M})
+  \end{equation}
+  (1-prevalenza)*(1-specificità)
+  \item Probabilità di un falso negativo:
+  \begin{equation}
+    P({M}\cap{-}) = P(M)P(-|M)
+  \end{equation}
+  prevalenza * (1-specificità)
+\end{enumerate}
+\subsubsection{Esempio di test diagnostico}
+Si studi un nuovo test per l'HIV.
+Sia:\\
+prevalenza = P(HIV) = 0.001 la proporzione di HIV nella popolazione studiata.\\
+Sia inoltre:\\
+P(+|HIV) = 0.95 sensitività
+P(-|$\overline{HIV}$) = 0.98 specificità
+La probabilità di un falso positivo è:\\
+$P(\overline{HIV}\cap{+}) = P(\overline{HIV}+P(+|\overline{HIV}) = (1-O.OO1)*(1-0.098) = 0.01998$\\
+La probabilità di un falso negativo è:\\
+$P({HIV}\cap{-} = P(HIV)P(-|HIV) = 0.001(1-0.95) = 0.00005$
+Per trovare la probabilità P(+), possiamo usare la legge della probabilità totale:\\
+$P(+) = P (+|HIV)P(HIV)+P(+|\overline{HIV})P(\overline{HIV}) = 0.95*0.001+(1-0.98)*(1-0.001) = 0.02093$\\
+Possiamo invece usare la formula di Bayes per trovare P(HIV|+), ossia la probabilità dell'evento "persona malata dato positivo":\\
+$P(HIV|+)=\frac{P(HIV)P(+|HIV)}{P(HIV)P(+|HIV)+P(\overline{HIV})P(+|\overline{HIV})}$
+\subsection{Filtri per la posta elettronica}
+Consideriamo un filtro automatico che blocca i messaggi di spam in arrivo in una casella di posta.\\
+Denotiamo:\\
+S = il messaggio è  di spam\\
+W =  il messaggio contiene determinate parole chiave.\\
+Grazie al teorema di Bayes possiamo fissare a priori la probabilità che un messaggio sia Spam e poi aggiornarla nel caso in cui il messaggio contenga le parole chiave considerate:\\
+$P(S|W) = \frac{P(W|S)P(S)}{P(W|S)P(S)+P(W|\overline{S})P(\overline{S})}$
 \end{document}

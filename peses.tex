@@ -62,7 +62,7 @@ d) Dobbiamo considerare la probabilità che la somma dei numeri sia 8,9,10,11 o 
 12: otteniamo 12 in 1 modo (6,6).\\
 Quindi: $P(D) = \frac{5+4+3+2+1}{36} = \frac{5}{12}$ \\ \\
 Consideriamo ora il caso in cui l'estrazione avvenga senza reinserimento:\\
-Dobbiamo stare attenti al nostro spazio campionario. In questo caso, non ci saranno più 36 elementi, ma solo 30 (6*5).\\
+Dobbiamo stare attenti al nostro spazio campionario. In questo caso, non ci saranno più 36 elementi, ma solo 30 (6*5). per la seconda estrazione sarà 5 perchè abbiamo tolto una pallina.\\
 a) Otteniamo un 7 in 6 modi diversi, un 8 in 4 modi diversi (non si conta più il caso in cui i 2 numeri sono uguali). Quindi $P(A) = \frac{10}{30} = \frac{1}{30}$.\\
 b) In questo caso, $P(B)=\frac{1}{30}$.\\
 c) Il numero di modalità con le quali otteniamo 7 o 11 non cambia. $P(C)={8}{30}={4}{15}$.\\
@@ -72,6 +72,47 @@ d) 8: 4 modi diversi.\\
 11: 2 modi diversi.\\
 12: 0 modi diversi. 12 può essere ottenuto solo da 6,6 e non è possibile nel caso di estrazioni senza reinserimento.\\
 $P(D)=\frac{12}{30}=\frac{2}{5}$.
+}
+\item Un’urna contiene due palle nere e una rossa. Una seconda urna ne contiene una
+bianca e due rosse. Si estrae a caso una palla da ciascuna urna.\\
+a) Descrivere uno spazio campionario per quest’esperimento.\\
+b) Descrivere il corrispondente spazio degli eventi.\\
+c) Qual è la probabilità che entrambe le palline siano dello stesso colore?\\
+d) E che siano di colore diverso?\\
+\emph{\underline{SOLUZIONE:}\\ \\
+a) Il nostro spazio campionario (insieme che rappresenta i possibili risultati di un fenomeno aleatorio) sarà composto quindi da tutte le possibili estrazioni: avremo quindi 9 possibili estrazioni.\\
+b) Lo spazio degli eventi: un evento è un sottoinsieme A dello spazio campionario.\\
+c) Probabilità che entrambe le palline siano dello stesso colore: ci saranno 2 possibili eventi che soddisfano questa condizione: dobbiamo pescare una pallina rossa dall'urna 1 e una dall'urna 2. Ci sono due palline rosse nell'urna 1, quindi avremo 2 possibili estrazioni: $(R_1, R - R_2, R)$. Quindi la soluzione è $\frac{2}{9}$. \\
+d) Probabilità che le palline siano di colore diverso: Possiamo prendere l'evento certo e sottrarre da questo l'evento (c). Otteniamo quindi: $1-\frac{2}{9} = \frac{7}{9}$. \\
+}
+\item Un esperimento consiste nel chiedere a tre signore, scelte casualmente, se sono iscritte
+ad un social network .\\
+a) Elencare gli elementi dello spazio campionario, usando le lettere Y per sì e N
+per no.\\
+b) Elencare gli elementi di $\Omega$ corrispondenti all’evento E =“almeno due donne sono
+iscritte ad un social network”.\\
+c) Definire l’evento i cui elementi sono:
+\{(Y, Y, Y ), (N, Y, Y ), (Y, Y, N ), (N, Y, N )\}.\\
+\emph{\underline{SOLUZIONE:}\\ \\
+a) Spazio campionario: $\Omega=\{(Y,Y,Y),(Y,Y,N),(Y,N,Y),(Y,N,N),(N,Y,Y),\\(N,Y,N), (N,N,Y), (N,N,N)\}$.\\
+b) Evento E="almeno 2 donne sono iscritte ad un social Network":\\
+$E=\{(Y,Y,Y), (Y,Y,N),(Y,N,Y), (N,Y,Y) \}$ \\
+c) È l'evento F="al massimo 1 donna non è iscritta ad un social network".\\
+}
+\item Un mazzo da 40 carte viene distribuito fra 4 giocatori. Fissato un giocatore, calcolare:\\
+a) la probabilità che abbia 4 Assi\\ 
+b) che abbia almeno una carta di denari\\
+c) che abbia non più di 2 Assi\\
+\emph{\underline{SOLUZIONE:}\\ \\
+Il nostro spazio campionario è dato da tutte le possibili combinazioni di 40 elementi (40 carte) presi 10 alla volta (ogni giocatore ha 10 carte):\\
+$|\Omega| = {40}\choose{10}$
+a) la probabilità che il giocatore prefissato abbia tutti e 4 gli assi è data da:\\
+$P(A) = \frac{{{4}\choose{4}} * {{6}\choose{36}}}{|\Omega|}$.  La prima combinazione mi dice in quanti possibili modi posso formare gruppi da 4 con i 4 assi che ho a disposizione. La seconda mi dice il numero di combinazioni in cui è possibile ottenere le 6 carte rimanenti tra le 36 restanti.\\
+$P(A)=0.002298$\\
+b) Che abbia almeno 1 carta di denari: possiamo calcolarlo semplicemente calcolando la probabilità che il giocatore non abbia nessuna carta di denari, P(N)=$\frac{{{10}\choose{30}}}{{{40}\choose{30}}}$, e calcolando l'evento opposto di questo evento. \\
+Quindi, $P(B) = 1 - P(N) = 0.9645554$\\
+c) Che abbia non più di 2 assi: sommiamo le probabilità che abbia 0, 1 e 2 assi:\\
+$P(C) = \frac{{{4}\choose{0}}*{{36}\choose{10}}+{{4}\choose{1}}*{{36}\choose{9}}+{{4}\choose{2}}*{{36}\choose{8}}}{{{40}\choose{10}}}=0.4466$
 }
 \end{enumerate}
 \end{document}
