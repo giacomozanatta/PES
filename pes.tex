@@ -7,7 +7,6 @@
 \renewcommand*\contentsname{Indice}
 \usepackage{Sweave}
 \begin{document}
-
 \maketitle
 \tableofcontents
 \newpage
@@ -290,4 +289,173 @@ S = il messaggio è  di spam\\
 W =  il messaggio contiene determinate parole chiave.\\
 Grazie al teorema di Bayes possiamo fissare a priori la probabilità che un messaggio sia Spam e poi aggiornarla nel caso in cui il messaggio contenga le parole chiave considerate:\\
 $P(S|W) = \frac{P(W|S)P(S)}{P(W|S)P(S)+P(W|\overline{S})P(\overline{S})}$
+\newpage
+\section{Variabili aleatorie}
+Una variabile aleatoria X è una funzione che assume  valori numerici determinati dall'esito di un certo fenomeno aleatorio. Se $\Omega$ è lo spazio campionario del fenomeno interessato, allora X è una particolare funzione $X:\Omega->R$\\
+\subsection{Spazio campionario indotto}
+Una variabile aleatoria definisce un nuovo spazio campionario numerico, costituito da tutti i possibili valori assunti dalla variabile stessa.\\
+Si passa, quindi, da un generico spazio campionario ad un sottoinsieme di R.\\
+Esistono due tipi di variabili aleatorie (a seconda del sottoinsieme dello spazio campionario indotto):\\
+\begin{enumerate}
+  \item Variabili aleatorie discrete.\\
+  Una v.a. discreta X assume valori in un insieme numerabile di punti ${x_1,x_2,...,x_i,...}$.
+  Un modello probabilistico per X è un'assegnazione di probabilità ad ogni suo possibile valore:\\
+  \begin{equation}
+  P(X=x_i) = p_i, \; \forall{i=1,2,...}
+  \end{equation}
+Per calcolare P(${X}\in{A}$), si sommano le probabilità dei singoli valori che appartengono ad A.\\
+
+
+  \item Variabili aleatorie continue.\\
+  Una v.a. continua X assume valori in un insieme continuo di punti (sottoinsieme di R).\\
+  Un modello probabilistico per X è un'assegnazione di probabilità ad ogni sottoinsieme di suoi possibili valori:\\
+  \begin{equation}
+    P({X}\in{A}) = area\; su\; A\; sottesa\; ad\; una\; curva
+  \end{equation}
+  La curva è il grafico di una funzione f(x), chiamata densità di probabilità.
+  
+\end{enumerate}
+\subsection{Variabili aleatorie discrete}
+\subsubsection{Funzione di probabilità}
+Un'assegnazione di probabilità per X viene chiamata funzione di probabilità e può essere rappresentata tramite un diagramma a bastoncini.
+\subsubsection{Valore atteso (media)}
+La media di una v.a. X discreta è:
+\begin{equation}
+E(X) = \sum_{i}{x_{i}p_{i}}
+\end{equation}
+Sia Y una v.a. ottenuta trasformando la v.a. X tramite la funzione g:R->R. Il valore atteso di Y si può calcolare anche senza conoscerne direttamente la sua funzione di probabilità.
+\begin{equation}
+E(Y)=\sum_{i}g(x_i)p_i
+\end{equation}
+\subsubsection{Varianza}
+La varianza di v.a. discreta è:
+\begin{equation}
+Var(X)=\sum_{i}{(x_{i}-E(X))^{2}p_i}
+\end{equation}
+Oppure (da comunque lo stesso risultato):
+\begin{equation}
+Var(X)=\sum_{i}{{{x_i}^{2}p_i}}-E(X)^2
+\end{equation}
+\subsection{Variabili aleatorie continue}
+\subsubsection{Densità di probabilità}
+Una densità di probabilità è una particolare funzione f(x) che possiede le seguenti caratteristiche:
+\begin{itemize}
+\item $f(x)>=0, \forall{x\in{R}}$
+\item $\int_{R}{f(x)dx}=1$
+\end{itemize}
+Dopo aver assegnato una densità di probabilità, possiamo calcolare la probabilità di A (sottoinsieme di R) con:
+\begin{equation}
+P(X\in{a})=\int_{A}{f(x)dx}
+\end{equation}
+dove A è un evento di R. Notare che $P(X=x) = 0, \forall{x\in{R}}$
+\subsubsection{Funzione di ripartizione}
+È una funzione continua. Se X è una varaibile aleatoria continua con densità f(x), allora la sua funzione di ripartizione è:\\
+\begin{equation}
+F(x) = \int_{-\infty}^{x}f(t)dt
+\end{equation}
+Dalla funzione di ripartizione possiamo risalire alla densità di probabilità:
+\begin{equation}
+f(x) = \frac{dF(x)}{dx}
+\end{equation}
+\subsubsection{Valore atteso (media)}
+Sia X una v.a. continua con densità f(x). Allora il valore atteso di X è
+\begin{equation}
+E(X) = \int_0^{\infty}{2xe^{-2x}dx = \frac{1}{2}}
+\end{equation}
+La media ha le seguenti proprietà:
+\begin{itemize}
+\item $E(a)=a$, con a costante.
+\item $E(aX+b)=aE(X)+b$, dove a e b sono costanti.
+\end{itemize}
+Sia Y una v.a. ottenuta trasformando la v.a. X tramite la funzione g:R->R. Il valore atteso di Y si può calcolare anche senza conoscerne direttamente la sua funzione di probabilità.
+\begin{equation}
+E(Y)=\int_{R}g(x)f(x)dx
+\end{equation}
+\subsubsection{Varianza}
+Sia X una v.a. continua, con densità f(x). Allora la varianza di X è:
+\begin{equation}
+Var(X)=\int_{R}{(x-E(X))^{2}F(x)dx}
+\end{equation}
+Oppure:
+\begin{equation}
+Var(X)=\int_{R}{x^{2}f(x)dx-E(X)^2}
+\end{equation}
+La varianza ha le seguenti proprietà:
+\begin{itemize}
+\item $Var(a) = a$, a costante.
+\item $Var(aX+b)=a^{2}Var(X)$, a e b costanti.
+\end{itemize}
+\subsection{Moda, mediana, quantili di una v.a.}
+La moda di una v.a. continua o discreta X è il punto (o i punti) in cui la funzione di probabilità/densità assume valore massimo. È un indice di posizione.\\
+La mediana è il minimo valore m per cui
+\begin{equation}
+F(m)=P(X<=m)>=\frac{1}{2}
+\end{equation}
+Per una v.a. continua, la mediana è l'unico punto m in cui $F(m)=P(X<=m)=P(X>=m)=\frac{1}{2}$
+I quantili sono indici di posizione che generalizzano il concetto di mediana di una distribuzione.
+Fissato un valore ${a}\in{(0,1)}$, il quantile di livello a di una v.a. X è il minimo valore $q_a$ per cui
+\begin{equation}
+F(q_a)=P(X<=q_a)>=a
+\end{equation}
+Per una v.a. continua il quantile di livello a è l'unico punto $q_a$ per cui $F(q_a)=P(X<=q_a)=a$.
+\subsection{Alcune variabili aleatorie discrete}
+\subsubsection{Distribuzione uniforme}
+Consideriamo una v.a. X che assume un numero finito di valori tutti con la stessa probabilità $p_i=1/n$.\\
+Si dice allora che X ha una distribuzione uniforme e si scrive X$\sim U\{x_1,...,x_n\}$.
+\subsubsection{Distribuzione ipergeometrica}
+Sia X la v.a. che conta il numero di successi su n estrazioni senza reinserimento da una popolazione con N elementi dei quali K sono considerati successo.\\
+Si dice che X ha una distribuzione ipergeometrica di parametri N,K e n e si scrive $X\sim Ip(N,K,n)$.\\
+Abbiamo che:
+\begin{equation}
+P(X=k)=\frac{{{N}\choose{k}}{{N-K}\choose{n-k}}}{{{N}\choose{n}}}
+\end{equation}
+\begin{equation}
+E(X)=n\frac{K}{N}
+\end{equation}
+\begin{equation}
+Var(X)=n{\frac{K}{N}}{\frac{N-K}{N}}{\frac{N-n}{N-1}}
+\end{equation}
+\subsubsection{Distribuzione binomiale}
+Sia X la v.a. che conta il numero di successi su n estrazioni con reinserimento da una popolazione con N elementi dei quali K sono considerati successo. La probabilità di successo rimane invariata ad ogni estrazione successiva, pari a p=K/N.\\
+X ha una distribuzione binomiale di parametri $n,p \in{(0,1)}$ e si scrive $X\sim Bi(n,p)$.
+\begin{equation}
+P(X=k)={{n}\choose{k}}p^k(1-p)^{n-k}, k<=n
+\end{equation}
+\begin{equation}
+E(X)=np
+\end{equation}
+\begin{equation}
+Var(X)=np(1-p)
+\end{equation}
+\subsubsection{Distribuzione di Poisson}
+Una variabile aleatoria X che assume valori nell'insieme dei numeri naturali N, ha distribuzione di Poisson di parametro $\lambda>0$ se
+\begin{equation}
+P(X=k)=\frac{\lambda^k}{k!}e^{-\lambda}
+\end{equation}
+Scriveremo quindi $X\sim P(\lambda)$.
+\begin{equation}
+E(x)=Var(X)=\lambda
+\end{equation}
+La v.a. di Poisson viene utilizzata come modello per il conteggio di manifestazioni di un certo fenomeno di interesse, come ad esempio:
+\begin{enumerate}
+\item chiamate in arrivo ad un centralino in un certo intervallo di tempo
+\item macchine transitanti ad un casello autostradale in un certo periodo del giorno
+\item difetti rilevati in un pezzo di filo d'acciao prodotto da una ditta
+\item terremoti manifestatisi in una data area nell'arco degli ultimi 10 anni
+\end{enumerate}
+In una binomiale, quando n>=100 e p<=0.05, possiamo approssimare la v.a. binomiale ad una poisson, con $\lambda=np$.
+\subsubsection{Distribuzione geometrica}
+Sia X una v.a. che conta il numero di ripetizioni indipendenti necessarie per osservare il primo successo in un esperimento binario che ha probabilità di successo p.\\
+Diciamo che X ha una distribuzione geometrice di parametro $p\in (0,1)$ e si scrive $X\sim Ge(p)$:
+\begin{equation}
+P(X=k)=(1-p)^{k-1}p
+\end{equation}
+\begin{equation}
+E(X)=\frac{1}{p}
+\end{equation}
+\begin{equation}
+Var(X)=\frac{1-p}{p^2}
+\end{equation}
+La distribuzione geometrica ha la proprietà di mancanza di memoria. Questo significa che $P(X>m+n|X>m)=P(X>n)$.
+\subsection{Alcune variabili aleatorie continue}
 \end{document}
